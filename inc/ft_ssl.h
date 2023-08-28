@@ -12,3 +12,12 @@ typedef struct  s_ssl
     char        *file;
     char        *string;
 }               t_ssl;
+
+
+
+/********************/
+/*      UTILS       */
+/********************/
+
+void print_usage();
+void print_invalid_command(char *command);
