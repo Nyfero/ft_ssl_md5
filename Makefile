@@ -39,7 +39,7 @@ UTILS_PATH = utils
 #    Files
 FILES = main.c
 
-MD5 = 
+MD5 = $(addprefix $(MD5_PATH)/, md5_init.c)
 
 SHA256 =
 
@@ -54,11 +54,11 @@ CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -rf
 
-SRCS = $(addprefix $(SRCS_PATH)/,	$(FILES) $(UTILS))
+SRCS = $(addprefix $(SRCS_PATH)/,	$(FILES) $(MD5) $(UTILS))
 
 OBJS_PATH = objs/
 
-OBJS = $(patsubst $(SRCS_PATH)%.c $(UTILS_PATH)%.c,	$(OBJS_PATH)%.o,	$(SRCS))
+OBJS = $(patsubst $(SRCS_PATH)%.c $(MD5_PATH)%.c $(UTILS_PATH)%.c,	$(OBJS_PATH)%.o,	$(SRCS))
 
 #    Rules
 all: $(NAME)
@@ -75,7 +75,7 @@ $(LIB): $(LIB_DIR)/Makefile
 $(OBJS_PATH):
 	$(HIDE) mkdir -p $(OBJS_PATH)
 
-$(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(UTILS_PATH)%.c $(INC) Makefile
+$(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(MD5_PATH)%.c $(UTILS_PATH)%.c $(INC) Makefile
 	$(HIDE) $(CC) $(CFLAGS) -I $(INC) -c $< -o $@
 	@ echo "$(GREEN)[ OK ]$(END) $(CYAN)${<:.s=.o}$(END)"
 

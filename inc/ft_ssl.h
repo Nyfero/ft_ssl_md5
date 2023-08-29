@@ -3,6 +3,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 #include "../Libft/inc/libft.h"
 
 typedef struct  s_ssl
@@ -13,6 +14,13 @@ typedef struct  s_ssl
     char        *string;
 }               t_ssl;
 
+
+/********************/
+/*      MD5         */
+/********************/
+
+int*    init_r();
+int*    init_k();
 
 
 /********************/
