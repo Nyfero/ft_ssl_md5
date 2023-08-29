@@ -1,7 +1,6 @@
 #include "../../inc/ft_ssl.h"
-#include <math.h>
 
-int*    init_r() {
+static int*    init_r() {
     int *r = malloc(sizeof(int) * 64);
     int i = 0;
     for (int j = 0; j < 4; j++) {
@@ -31,11 +30,31 @@ int*    init_r() {
     return r;
 }
 
-int*    init_k() {
-    int *k = malloc(sizeof(int) * 64);
+static float*    init_k() {
+    float *k = malloc(sizeof(int) * 64);
     for (int i = 0; i < 64; i++) {
-        k[i] = (int)(floor(sin(i + 1)) * pow(2, 32));
-        // k[i] = i;
+        k[i] = (floor(fabs(sin(i + 1)) * pow(2, 32)));
     }
     return k;
+}
+
+int init_md5() {
+    printf("MD5\n");
+
+    int *r = init_r();
+    float *k = init_k();
+    int h0 = 0x67452301;
+    int h1 = 0xEFCDAB89;
+    int h2 = 0x98BADCFE;
+    int h3 = 0x10325476;
+
+    (void)r;
+    (void)k;
+    (void)h0;
+    (void)h1;
+    (void)h2;
+    (void)h3;
+
+    return 0;
+
 }

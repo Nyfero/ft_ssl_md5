@@ -19,8 +19,7 @@ typedef struct  s_ssl
 /*      MD5         */
 /********************/
 
-int*    init_r();
-int*    init_k();
+int init_md5();
 
 
 /********************/

@@ -65,7 +65,7 @@ all: $(NAME)
 
 $(NAME): $(LIB) $(OBJS_PATH) $(OBJS) $(INC)
 	@ echo "$(BLUE)\n         ***Make $(NAME) ***\n$(END)"
-	$(HIDE) $(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIB)
+	$(HIDE) $(CC) $(CFLAGS) $(OBJS) -o $(NAME) -lm $(LIB)
 	@ echo "$(GREEN)\n        ---$(NAME) created ---\n$(END)"
 
 $(LIB): $(LIB_DIR)/Makefile
