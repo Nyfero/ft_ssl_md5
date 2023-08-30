@@ -3,54 +3,50 @@
 void print_t_ssl(t_ssl *ssl) {
     printf("\n\e[92m*****t_ssl*****\n");
     printf("command: %s\n", ssl->command);
-    printf("flags: ");
     if (ssl->flags[0]) {
         for (int i = 0; ssl->flags[i]; i++) {
-            printf("%s ", ssl->flags[i]);
+            printf("flags %d ->", i);
+            printf("%s\n", ssl->flags[i]);
         }
     }
     else {
-        printf("no flags");
+        printf("no flags\n");
     }
-    printf("\n");
-    printf("filename: ");
     if (ssl->filename[0]) {
         for (int i = 0; ssl->filename[i]; i++) {
-            printf("%s ", ssl->filename[i]);
+            printf("filename %d ->", i);
+            printf("%s\n", ssl->filename[i]);
         }
     }
     else {
-        printf("no filename");
+        printf("no filename\n");
     }
-    printf("\n");
-    printf("fd: ");
     if (ssl->fd[0]) {
         for (int i = 0; ssl->fd[i]; i++) {
-            printf("%d ", ssl->fd[i]);
+            printf("fd %d ->", i);
+            printf("%d\n", ssl->fd[i]);
         }
     }
     else {
-        printf("no fd");
+        printf("no fd\n");
     }
-    printf("\n");
-    printf("string: ");
     if (ssl->string[0]) {
         for (int i = 0; ssl->string[i]; i++) {
-            printf("%s ", ssl->string[i]);
+            printf("string %d ->", i);
+            printf("%s\n", ssl->string[i]);
         }
     }
     else {
-        printf("no string");
+        printf("no string\n");
     }
-    printf("\n");
-    printf("hash: ");
     if (ssl->hash[0]) {
         for (int i = 0; ssl->hash[i]; i++) {
-            printf("%s ", ssl->hash[i]);
+            printf("hash %d ->", i);
+            printf("%s\n", ssl->hash[i]);
         }
     }
     else {
-        printf("no hash");
+        printf("no hash\n");
     }
     printf("\n***************\n");
     printf("\n\e[39m");
