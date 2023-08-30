@@ -36,14 +36,18 @@ SHA256_PATH = sha256
 
 UTILS_PATH = utils
 
+DEBUG_PATH = debug
+
 #    Files
 FILES = main.c
 
-MD5 = $(addprefix $(MD5_PATH)/, md5_init.c)
+MD5 = $(addprefix $(MD5_PATH)/, md5.c md5_init.c)
 
-SHA256 =
+SHA256 = $(addprefix $(SHA256_PATH)/, sha256.c sha256_init.c)
 
-UTILS = $(addprefix $(UTILS_PATH)/, print_message.c)
+UTILS = $(addprefix $(UTILS_PATH)/, print_message.c t_ssl_init.c)
+
+DEBUG = $(addprefix $(DEBUG_PATH)/, print_t_ssl.c)
 
 #    Compilation
 NAME = ft_ssl
@@ -54,11 +58,11 @@ CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -rf
 
-SRCS = $(addprefix $(SRCS_PATH)/,	$(FILES) $(MD5) $(UTILS))
+SRCS = $(addprefix $(SRCS_PATH)/,	$(FILES) $(MD5) $(SHA256) $(UTILS) $(DEBUG))
 
 OBJS_PATH = objs/
 
-OBJS = $(patsubst $(SRCS_PATH)%.c $(MD5_PATH)%.c $(UTILS_PATH)%.c,	$(OBJS_PATH)%.o,	$(SRCS))
+OBJS = $(patsubst $(SRCS_PATH)%.c $(MD5_PATH)%.c $(SHA256_PATH)%.c $(UTILS_PATH)%.c $(DEBUG_PATH)%.c,	$(OBJS_PATH)%.o,	$(SRCS))
 
 #    Rules
 all: $(NAME)
@@ -75,7 +79,7 @@ $(LIB): $(LIB_DIR)/Makefile
 $(OBJS_PATH):
 	$(HIDE) mkdir -p $(OBJS_PATH)
 
-$(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(MD5_PATH)%.c $(UTILS_PATH)%.c $(INC) Makefile
+$(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(MD5_PATH)%.c $(SHA256_PATH)%.c $(UTILS_PATH)%.c $(DEBUG_PATH)%.c $(INC) Makefile
 	$(HIDE) $(CC) $(CFLAGS) -I $(INC) -c $< -o $@
 	@ echo "$(GREEN)[ OK ]$(END) $(CYAN)${<:.s=.o}$(END)"
 

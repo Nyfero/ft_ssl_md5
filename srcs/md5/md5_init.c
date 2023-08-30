@@ -39,7 +39,7 @@ static float*    init_k() {
 }
 
 int init_md5() {
-    printf("MD5\n");
+    printf("MD5 init\n");
 
     int *r = init_r();
     float *k = init_k();
