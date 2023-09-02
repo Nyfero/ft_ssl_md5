@@ -1,5 +1,6 @@
 # pragma once
 #include "ft_ssl.h"
+#include <stdint.h>
 
 typedef struct s_md5
 {
@@ -25,3 +26,15 @@ int md5(int ac, char **av);
 
 //  md5_init.c
 t_md5 *init_md5(t_ssl *ssl);
+
+
+/*******************/
+/*      DEBUG      */
+/*******************/
+
+//  print_md5.c
+void print_r(t_md5 *md5);
+void print_k(t_md5 *md5);
+void print_h0123(t_md5 *md5);
+void print_abcd(t_md5 *md5);
+void print_t_md5(t_md5 *md5);

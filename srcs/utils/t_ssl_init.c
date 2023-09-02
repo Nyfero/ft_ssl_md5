@@ -66,6 +66,11 @@ static void get_argument(int ac, char **av, t_ssl *ssl, int i) {
         ptr = ptr->next;
         i++;
     }
+    ptr->fd = 0;
+    ptr->filename = NULL;
+    ptr->string = NULL;
+    ptr->hash = NULL;
+    ptr->next = NULL;
 }
 
 t_ssl   *init_ssl(int ac, char **av) {

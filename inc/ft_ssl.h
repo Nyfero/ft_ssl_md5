@@ -23,6 +23,7 @@ typedef struct  s_ssl
     t_argument  *argument;
 }               t_ssl;
 
+
 /********************/
 /*      UTILS       */
 /********************/
@@ -36,11 +37,12 @@ void malloc_failed();
 //  t_ssl_init.c
 t_ssl   *init_ssl(int ac, char **av);
 
+
 /*******************/
 /*      DEBUG      */
 /*******************/
 
-//  print_t_ssl.c
+//  print_ssl.c
 void print_command(t_ssl *ssl);
 void print_flags(t_ssl *ssl);
 void print_filename(t_argument *argument);

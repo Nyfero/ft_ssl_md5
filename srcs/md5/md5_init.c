@@ -1,4 +1,3 @@
-#include "../../inc/ft_ssl.h"
 #include "../../inc/ft_md5.h"
 
 static unsigned int*    init_r() {
@@ -39,6 +38,38 @@ static unsigned int*    init_k() {
     return k;
 }
 
+static char *stringToBinary(char *s) {
+    if (s == NULL) return 0; /* no input string */
+    size_t len = strlen(s);
+    char *binary = malloc(len * 8 + 1); /* over-allocate for null terminator */
+    if (binary == NULL) return 0; /* malloc failed */
+    binary[0] = '\0';
+    for (size_t i = 0; i < len; ++i) {
+        char ch = s[i];
+        for (int j = 7; j >= 0; --j) {
+            if (ch & (1 << j)) {
+                strcat(binary, "1");
+            } else {
+                strcat(binary, "0");
+            }
+        }
+    }
+    return binary;
+}
+
+static void init_string(t_ssl *ssl) {
+    while (ssl->argument->string) {
+        ssl->argument->string = stringToBinary(ssl->argument->string);
+        ssl->argument->string = ft_strappend(ssl->argument->string, "1");
+        int len = strlen(ssl->argument->string);
+        while (len % 512 != 448) {
+            ssl->argument->string = ft_strappend(ssl->argument->string, "0");
+            len = strlen(ssl->argument->string);
+        }
+        ssl->argument = ssl->argument->next;
+    }
+}
+
 t_md5 *init_md5(t_ssl *ssl) {
     printf("MD5 init\n");
     t_md5 *md5 = malloc(sizeof(t_md5));
@@ -50,8 +81,7 @@ t_md5 *init_md5(t_ssl *ssl) {
     md5->h2 = 0x98BADCFE;
     md5->h3 = 0x10325476;
 
-    (void)md5;
-    (void)ssl;
-
+    init_string(ssl);
+    print_t_md5(md5);
     return md5;
 }

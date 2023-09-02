@@ -47,7 +47,7 @@ SHA256 = $(addprefix $(SHA256_PATH)/, sha256.c sha256_init.c)
 
 UTILS = $(addprefix $(UTILS_PATH)/, print_message.c t_ssl_init.c)
 
-DEBUG = $(addprefix $(DEBUG_PATH)/, print_t_ssl.c)
+DEBUG = $(addprefix $(DEBUG_PATH)/, print_ssl.c print_md5.c)
 
 #    Compilation
 NAME = ft_ssl
