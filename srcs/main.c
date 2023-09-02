@@ -1,4 +1,6 @@
 #include "../inc/ft_ssl.h"
+#include "../inc/ft_md5.h"
+#include "../inc/ft_sha256.h"
 
 int main(int ac, char **av) {
 

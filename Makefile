@@ -20,7 +20,7 @@ endif
 #    Includes
 INC_PATH = inc/
 
-INC = $(addprefix $(INC_PATH), ft_ssl.h)
+INC = $(addprefix $(INC_PATH), ft_ssl.h ft_md5.h ft_sha256.h)
 
 #	 Lib
 LIB_DIR = Libft/

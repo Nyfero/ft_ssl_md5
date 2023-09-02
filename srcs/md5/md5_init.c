@@ -1,7 +1,8 @@
 #include "../../inc/ft_ssl.h"
+#include "../../inc/ft_md5.h"
 
-static int*    init_r() {
-    int *r = malloc(sizeof(int) * 64);
+static unsigned int*    init_r() {
+    unsigned int *r = malloc(sizeof(unsigned int) * 64);
     int i = 0;
     for (int j = 0; j < 4; j++) {
         r[i++] = 7;
@@ -30,31 +31,27 @@ static int*    init_r() {
     return r;
 }
 
-static float*    init_k() {
-    float *k = malloc(sizeof(int) * 64);
+static unsigned int*    init_k() {
+    unsigned int *k = malloc(sizeof(unsigned int) * 64);
     for (int i = 0; i < 64; i++) {
         k[i] = (floor(fabs(sin(i + 1)) * pow(2, 32)));
     }
     return k;
 }
 
-int init_md5() {
+t_md5 *init_md5(t_ssl *ssl) {
     printf("MD5 init\n");
+    t_md5 *md5 = malloc(sizeof(t_md5));
 
-    int *r = init_r();
-    float *k = init_k();
-    int h0 = 0x67452301;
-    int h1 = 0xEFCDAB89;
-    int h2 = 0x98BADCFE;
-    int h3 = 0x10325476;
+    md5->r = init_r();
+    md5->k = init_k();
+    md5->h0 = 0x67452301;
+    md5->h1 = 0xEFCDAB89;
+    md5->h2 = 0x98BADCFE;
+    md5->h3 = 0x10325476;
 
-    (void)r;
-    (void)k;
-    (void)h0;
-    (void)h1;
-    (void)h2;
-    (void)h3;
+    (void)md5;
+    (void)ssl;
 
-    return 0;
-
+    return md5;
 }

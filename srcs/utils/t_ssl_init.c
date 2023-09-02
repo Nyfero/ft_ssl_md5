@@ -23,20 +23,30 @@ static int get_flag(int ac, char **av, t_ssl *ssl) {
 }
 
 static char *get_string(int fd) {
-    char *line;
-    char *string;
-    int i = 0;
-    (void)fd;
-    // string = ft_strdup("");
-    while (get_next_line(fd, &line) > 0) {
-        printf("line: %s\n", line);
-        string = ft_strjoin(string, line);
-        string = ft_strjoin(string, "\n");
-        free(line);
-        printf("string: %s\n", string);
-        i++;
+    // Create a buffer to read data from the file
+    char buffer[1024];
+    size_t bytesRead;
+    char *fileContent = NULL;
+    size_t fileSize = 0;
+
+    // Read the file in chunks and append to fileContent
+    while ((bytesRead = read(fd, buffer, sizeof(buffer))) > 0) {
+        // Resize the fileContent buffer
+        fileContent = realloc(fileContent, fileSize + bytesRead + 1);
+        if (fileContent == NULL)
+            malloc_failed();
+
+        // Copy the data from the buffer to the fileContent
+        ft_memcpy(fileContent + fileSize, buffer, bytesRead);
+        fileSize += bytesRead;
     }
-    return string;
+
+    // Null-terminate the fileContent to make it a valid string
+    if (fileContent != NULL) {
+        fileContent[fileSize] = '\0';
+    }
+
+    return fileContent;
 }
 
 static void get_argument(int ac, char **av, t_ssl *ssl, int i) {

@@ -1,3 +1,4 @@
+# pragma once
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -21,27 +22,6 @@ typedef struct  s_ssl
     char        **flags;
     t_argument  *argument;
 }               t_ssl;
-
-/********************/
-/*      MD5         */
-/********************/
-
-//  md5.c
-int md5(int ac, char **av);
-
-//  md5_init.c
-int init_md5();
-
-
-/********************/
-/*      SHA256      */
-/********************/
-
-// sha256.c
-int sha256(int ac, char **av);
-
-// sha256_init.c
-int init_sha256();
 
 /********************/
 /*      UTILS       */
