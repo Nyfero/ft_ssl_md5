@@ -45,7 +45,7 @@ MD5 = $(addprefix $(MD5_PATH)/, md5.c md5_init.c)
 
 SHA256 = $(addprefix $(SHA256_PATH)/, sha256.c sha256_init.c)
 
-UTILS = $(addprefix $(UTILS_PATH)/, print_message.c t_ssl_init.c)
+UTILS = $(addprefix $(UTILS_PATH)/, print_message.c t_ssl_function.c)
 
 DEBUG = $(addprefix $(DEBUG_PATH)/, print_ssl.c print_md5.c)
 

@@ -70,7 +70,7 @@ static void init_string(t_ssl *ssl) {
     }
 }
 
-t_md5 *init_md5(t_ssl *ssl) {
+t_md5 *init_md5(t_ssl **ssl) {
     printf("MD5 init\n");
     t_md5 *md5 = malloc(sizeof(t_md5));
 
@@ -81,7 +81,6 @@ t_md5 *init_md5(t_ssl *ssl) {
     md5->h2 = 0x98BADCFE;
     md5->h3 = 0x10325476;
 
-    init_string(ssl);
-    print_t_md5(md5);
+    init_string(*ssl);
     return md5;
 }

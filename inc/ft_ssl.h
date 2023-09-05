@@ -9,8 +9,7 @@
 
 typedef struct s_argument
 {
-    char                *filename;
-    int                 fd;
+    char                *file;
     char                *string;
     char                *hash;
     struct s_argument   *next;
@@ -18,7 +17,7 @@ typedef struct s_argument
 
 typedef struct  s_ssl
 {
-    char        *command;
+    char        *cmd;
     char        **flags;
     t_argument  *argument;
 }               t_ssl;
@@ -34,9 +33,9 @@ void print_invalid_command(char *command);
 void print_invalid_flag(char *flag);
 void malloc_failed();
 
-//  t_ssl_init.c
+//  t_ssl_function.c
 t_ssl   *init_ssl(int ac, char **av);
-
+void    free_ssl(t_ssl *ssl);
 
 /*******************/
 /*      DEBUG      */
@@ -46,7 +45,6 @@ t_ssl   *init_ssl(int ac, char **av);
 void print_command(t_ssl *ssl);
 void print_flags(t_ssl *ssl);
 void print_filename(t_argument *argument);
-void print_fd(t_argument *argument);
 void print_string(t_argument *argument);
 void print_hash(t_argument *argument);
 void print_t_ssl(t_ssl *ssl);

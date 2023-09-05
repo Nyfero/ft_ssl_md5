@@ -33,7 +33,7 @@ void print_h0123(t_md5 *md5) {
 }
 
 void print_abcd(t_md5 *md5) {
-    printf("\n*****fd*****\n");
+    printf("\n*****abcd*****\n");
     printf("a: %u\n", md5->a);
     printf("b: %u\n", md5->b);
     printf("c: %u\n", md5->c);

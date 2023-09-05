@@ -25,7 +25,7 @@ typedef struct s_md5
 int md5(int ac, char **av);
 
 //  md5_init.c
-t_md5 *init_md5(t_ssl *ssl);
+t_md5 *init_md5(t_ssl **ssl);
 
 
 /*******************/
