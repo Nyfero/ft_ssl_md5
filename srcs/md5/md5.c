@@ -8,6 +8,7 @@ int md5(int ac, char **av) {
     print_t_md5(md5);
 
     print_t_ssl(ssl);
+    // ajouter la taille du message initial(avant le padding) codée en 64-bit little-endian au message
 
     free_ssl(ssl);
     free_md5(md5);

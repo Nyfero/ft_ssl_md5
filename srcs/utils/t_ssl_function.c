@@ -109,6 +109,7 @@ t_ssl   *init_ssl(int ac, char **av) {
         malloc_failed();
     ssl->cmd = ft_strdup(av[1]);
     ssl->flags = get_flag(ac, av);
+    // if flag p -> get_argument on fd 0
     ssl->argument = get_argument(ac, av);
     if (!ssl->argument)
         malloc_failed();
