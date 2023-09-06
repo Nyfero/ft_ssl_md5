@@ -42,13 +42,11 @@ static t_argument *get_argument(int ac, char **av) {
         tmp->file = ft_strdup(av[i]);
         tmp->string = NULL;
         tmp->hash = NULL;
-        if (i + 1 < ac) {
-            tmp->next = malloc(sizeof(t_argument));
+        tmp->next = malloc(sizeof(t_argument));
         if (!tmp->next)
             malloc_failed();
         tmp = tmp->next;
         i++;
-        }
     }
     tmp = NULL;
     return argument;
