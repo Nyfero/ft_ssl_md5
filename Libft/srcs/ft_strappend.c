@@ -1,29 +1,24 @@
 #include "../inc/libft.h"
 
-char	*ft_strappend(char const *s1, char const *s2)
-{
-	size_t	i;
-	size_t	j;
-	size_t	k;
+char	*ft_strappend(char const *s1, char const *s2) {
+	size_t	i = 0;
+	size_t	j = 0;
+	size_t	k = ft_strlen(s1) + ft_strlen(s2);
 	char	*strcopie;
 
 	if (!s1 || !s2)
 		return (NULL);
-	k = ft_strlen(s1) + ft_strlen(s2);
 	strcopie = (char *)malloc(sizeof(char) * (k + 1));
 	if (!strcopie)
 		return (NULL);
-	i = 0;
-	j = 0;
-	while (i < k)
-	{
-		while (i < ft_strlen(s1))
-		{
+	while (i < k) {
+		if (i < ft_strlen(s1))
 			strcopie[i] = s1[i];
-			i++;
+		else {
+			strcopie[i] = s2[j];
+			j++;
 		}
-		while (j < ft_strlen(s2))
-			strcopie[i++] = s2[j++];
+		i++;
 	}
 	strcopie[i] = '\0';
     free((char *)s1);

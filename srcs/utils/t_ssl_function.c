@@ -41,8 +41,8 @@ static char *get_string(char *filename) {
         char *line;
         while (get_next_line(fd, &line) > 0) {
             string = ft_strappend(string, line);
-            free(line);
             string = ft_strappend(string, "\n");
+            free(line);
         }
         string = ft_strappend(string, line);
         free(line);

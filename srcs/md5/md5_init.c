@@ -54,23 +54,28 @@ static char *stringToBinary(char *s) {
             }
         }
     }
+    free(s);
     return binary;
 }
 
 static void init_string(t_ssl *ssl) {
-    while (ssl->argument->string) {
-        ssl->argument->string = stringToBinary(ssl->argument->string);
-        ssl->argument->string = ft_strappend(ssl->argument->string, "1");
-        int len = strlen(ssl->argument->string);
-        while (len % 512 != 448) {
-            ssl->argument->string = ft_strappend(ssl->argument->string, "0");
-            len = strlen(ssl->argument->string);
-        }
-        ssl->argument = ssl->argument->next;
+    t_argument *tmp = ssl->argument;
+    while (tmp->string) {
+        tmp->string = stringToBinary(tmp->string);
+        tmp->string = ft_strappend(tmp->string, "1");
+        int len = 448 - (strlen(tmp->string) % 512);
+        tmp->string = ft_strnappend(tmp->string, '0', len);
+        tmp = tmp->next;
     }
 }
 
-t_md5 *init_md5(t_ssl **ssl) {
+void free_md5(t_md5 *md5) {
+    free(md5->r);
+    free(md5->k);
+    free(md5);
+}
+
+t_md5 *init_md5(t_ssl *ssl) {
     printf("MD5 init\n");
     t_md5 *md5 = malloc(sizeof(t_md5));
 
@@ -80,7 +85,11 @@ t_md5 *init_md5(t_ssl **ssl) {
     md5->h1 = 0xEFCDAB89;
     md5->h2 = 0x98BADCFE;
     md5->h3 = 0x10325476;
+    md5->a = md5->h0;
+    md5->b = md5->h1;
+    md5->c = md5->h2;
+    md5->d = md5->h3;
 
-    init_string(*ssl);
+    init_string(ssl);
     return md5;
 }
