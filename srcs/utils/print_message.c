@@ -28,3 +28,10 @@ void malloc_failed() {
     ft_putendl_fd("Error: malloc failed", 2);
     exit(1);
 }
+
+void print_file_error(char *filename) {
+    ft_putstr_fd("ft_ssl: ", 2);
+    ft_putstr_fd(filename, 2);
+    ft_putendl_fd(": No such file or directory", 2);
+    exit(1);
+}

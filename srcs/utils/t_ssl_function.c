@@ -26,7 +26,30 @@ static char **get_flag(int ac, char **av) {
         malloc_failed();
     for (int i = 0; i < nb_flags; i++)
         flags[i] =  ft_strdup(&av[i + 2][1]);
+    flags[nb_flags] = NULL;
     return flags;
+}
+
+// get the content of a file
+static char *get_string(char *filename) {
+    char *string = ft_strdup("");
+    int fd = 0;
+
+    if ((fd = open(filename, O_RDONLY)) < 0)
+        print_file_error(filename);
+    else {
+        char *line;
+        while (get_next_line(fd, &line) > 0) {
+            string = ft_strappend(string, line);
+            free(line);
+            string = ft_strappend(string, "\n");
+        }
+        string = ft_strappend(string, line);
+        free(line);
+        close(fd);
+    }
+
+    return string;
 }
 
 // get the arguments
@@ -40,7 +63,7 @@ static t_argument *get_argument(int ac, char **av) {
 
     while (i < ac) {
         tmp->file = ft_strdup(av[i]);
-        tmp->string = NULL;
+        tmp->string = get_string(tmp->file);
         tmp->hash = NULL;
         tmp->next = malloc(sizeof(t_argument));
         if (!tmp->next)
@@ -48,7 +71,10 @@ static t_argument *get_argument(int ac, char **av) {
         tmp = tmp->next;
         i++;
     }
-    tmp = NULL;
+    tmp->file = NULL;
+    tmp->string = NULL;
+    tmp->hash = NULL;
+    tmp->next = NULL;
     return argument;
 }
 

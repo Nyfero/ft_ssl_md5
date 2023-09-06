@@ -32,6 +32,7 @@ void print_usage();
 void print_invalid_command(char *command);
 void print_invalid_flag(char *flag);
 void malloc_failed();
+void print_file_error(char *filename);
 
 //  t_ssl_function.c
 t_ssl   *init_ssl(int ac, char **av);
